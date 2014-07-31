@@ -1,0 +1,25 @@
+package com.songbase.fm.androidapp.buffering;
+
+import com.songbase.fm.androidapp.buffering.online.Convert2mp3netConverter;
+
+
+public class BufferController {
+
+    private vid2mp3Converter vid2mp3Converter;
+	
+	public BufferController() {
+		
+		this.vid2mp3Converter = new Convert2mp3netConverter();
+		
+		
+		
+		this.vid2mp3Converter.bufferSong();
+		
+				
+		
+	}
+	
+	
+	
+	
+}

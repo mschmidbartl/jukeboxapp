@@ -1,0 +1,64 @@
+package com.songbase.fm.androidapp.buffering.online;
+
+import java.net.URLEncoder;
+
+import misc.HttpController;
+import android.util.Log;
+
+import com.songbase.fm.androidapp.buffering.Vid2mp3Converter;
+
+public class Convert2mp3netConverter implements Vid2mp3Converter {
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@Override
+	public void bufferSong() {
+		
+	
+		
+		try {
+			
+			
+			
+			String urlParameters =
+			        "fName=" + URLEncoder.encode("xxx", "UTF-8") +
+			        "&lName=" + URLEncoder.encode("xxx", "UTF-8");
+			
+			String html = HttpController.instance.excutePost("http://www.google.de",urlParameters);
+
+			Log.w("",html);
+			Log.w("","##################################");
+			
+			 html = HttpController.instance.excuteGet("http://www.google.de");
+			
+			Log.w("",html);
+			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+
+}

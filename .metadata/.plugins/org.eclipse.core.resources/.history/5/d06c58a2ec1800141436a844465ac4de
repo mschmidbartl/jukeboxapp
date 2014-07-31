@@ -1,0 +1,23 @@
+package com.songbase.fm.androidapp.buffering.online;
+
+import misc.httpController;
+
+import com.songbase.fm.androidapp.buffering.vid2mp3Converter;
+
+public class convert2mp3netConverter implements vid2mp3Converter {
+
+
+	
+	@Override
+	public void bufferSong() {
+		
+	
+		
+		httpController.instance.doGet("..");
+		
+	
+		
+	}
+	
+
+}
