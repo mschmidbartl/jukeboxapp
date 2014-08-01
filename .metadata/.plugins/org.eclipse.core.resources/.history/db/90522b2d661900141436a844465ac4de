@@ -1,0 +1,127 @@
+package com.songbase.fm.androidapp.buffering.online;
+
+import java.net.URLEncoder;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import android.util.Log;
+
+import com.songbase.fm.androidapp.buffering.Vid2mp3Converter;
+import com.songbase.fm.androidapp.misc.HttpController;
+import com.songbase.fm.androidapp.misc.Utils;
+
+public class Convert2mp3netConverter implements Vid2mp3Converter {
+
+	private final String HOST = "convert2mp3.net";
+
+	@Override
+	public String bufferSong() {
+
+		String html = "";
+
+		try {
+
+			String urlParameters = "url="
+					+ URLEncoder
+							.encode("http://www.dailymotion.com/video/x1tbomx_sia-chandelier-official-music-video_music")
+					+ "&format=mp3&quality=1&85tvb5=43450768";
+			html = HttpController.instance.sendPost("http://" + HOST
+					+ "/index.php?p=convert", urlParameters, HOST);
+			
+					
+			Pattern pattern = Pattern.compile("\"convertFrame\" src=\"(.*?)\"");
+			Matcher matcher = pattern.matcher(html);
+			if (matcher.find()) {
+
+				
+				// Trigger Conversion
+
+				
+				String triggerConversionURL = matcher.group(1);
+				
+
+				
+				
+				
+				Utils.log("Download:  "+triggerConversionURL);
+
+				Utils.log("**************************************************************");
+
+				html = HttpController.instance.sendGet(triggerConversionURL,HOST,
+						"http://" + HOST + "/index.php?p=convert");
+				
+				Utils.log("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
+                Log.w("EE",html);
+                
+               	Utils.log("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
+ 
+				Utils.log(html);
+
+				
+				
+				
+				/*
+				
+				pattern = Pattern.compile("convert\\((.*?)\\)");
+				matcher = pattern.matcher(html);
+				if (matcher.find()) {
+
+					// Check Status
+					String parameters = matcher.group(1).replace("\"", "")
+							.replace(" ", "");
+
+					Utils.log(parameters);
+
+					String[] parameter = parameters.split(",");
+
+					// Format:parameter[3]
+
+					String id = parameter[0];
+					String key = parameter[1];
+					String cs = parameter[2];
+					String time;
+
+					// Converting
+					do {
+
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException ex) {
+							Thread.currentThread().interrupt();
+						}
+
+						time = String.valueOf(new Date().getTime());
+
+						Utils.log("http://" + HOST + "/status.php?id=" + id
+								+ "&key=" + key + "&cs=" + cs + "&time=" + time
+								+ "        http://" + HOST
+								+ "/index.php?p=convert");
+
+						html = HttpController.instance.sendGet("http://" + HOST
+								+ "/status.php?id=" + id + "&key=" + key
+								+ "&cs=" + cs + "&time=" + time, HOST,
+								"http://" + HOST + "/index.php?p=convert");
+
+						Utils.log(html);
+
+					} while (Integer.parseInt(html) == 0);
+
+				}
+				*/
+				
+				
+				
+				
+			}
+			// TODO EXTRACT
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return html;
+
+	}
+
+}

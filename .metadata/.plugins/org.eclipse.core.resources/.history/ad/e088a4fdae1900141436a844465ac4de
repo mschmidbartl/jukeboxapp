@@ -1,0 +1,110 @@
+package com.songbase.fm.androidapp;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.webkit.WebView;
+import android.widget.SimpleAdapter;
+
+import com.songbase.fm.androidapp.buffering.BufferController;
+
+public class MainActivity extends Activity {
+
+	private WebView webView;
+
+	private BufferController bufferController;
+
+	public static MainActivity instance;
+
+	// The data to show
+	List<Map<String, String>> planetsList = new ArrayList<Map<String, String>>();
+
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+
+		instance = this;
+
+		// Intent browserIntent = new Intent(Intent.ACTION_VIEW,
+		// Uri.parse("http://www.songbase.fm"));
+		// /startActivity(browserIntent);
+
+		bufferController = new BufferController();
+		// bufferController.bufferSong( url);
+
+		 initList();
+
+		    // We get the ListView component from the layout
+		    ListView lv = (ListView) findViewById(R.id.listView);
+
+		    // This is a simple adapter that accepts as parameter
+		    // Context
+		    // Data list
+		    // The row layout that is used during the row creation
+		    // The keys used to retrieve the data
+		    // The View id used to show the data. The key number and the view id must match
+		    simpleAdpt = new SimpleAdapter(this, planetsList, android.R.layout.simple_list_item_1, new String[] {"planet"}, new int[] {android.R.id.text1});
+
+		    lv.setAdapter(simpleAdpt);
+
+		/*
+		 * Button downloadButton = (Button) findViewById(R.id.downloadButton);
+		 * 
+		 * downloadButton.setOnClickListener( new OnClickListener() {
+		 * 
+		 * @Override public void onClick(View v) { // TODO Auto-generated method
+		 * stub
+		 * 
+		 * 
+		 * 
+		 * TextView t=(TextView)
+		 * MainActivity.instance.findViewById(R.id.videoURL);
+		 * Log.e("","XXXXXX");
+		 * 
+		 * String url ="";
+		 * 
+		 * if(t.getText().toString().equals("")) { url =
+		 * "http://www.dailymotion.com/video/x1tbomx_sia-chandelier-official-music-video_music"
+		 * ; }else{ url= t.getText().toString(); }
+		 * 
+		 * Log.e("",url);
+		 * 
+		 * 
+		 * } });
+		 */
+
+	}
+
+	private void initList() {
+		// We populate the planets
+
+		planetsList.add(createPlanet("planet", "Mercury"));
+		planetsList.add(createPlanet("planet", "Venus"));
+		planetsList.add(createPlanet("planet", "Mars"));
+		planetsList.add(createPlanet("planet", "Jupiter"));
+		planetsList.add(createPlanet("planet", "Saturn"));
+		planetsList.add(createPlanet("planet", "Uranus"));
+		planetsList.add(createPlanet("planet", "Neptune"));
+
+	}
+
+	private HashMap<String, String> createPlanet(String key, String name) {
+		HashMap<String, String> planet = new HashMap<String, String>();
+		planet.put(key, name);
+
+		return planet;
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+}

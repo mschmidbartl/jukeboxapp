@@ -3,6 +3,6 @@
 
     <string name="app_name">Songbase.fm</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">An App will be available soon! Visit Songbase.fm for more...</string>
+    <string name="dummy">Video URL:</string>
 
 </resources>

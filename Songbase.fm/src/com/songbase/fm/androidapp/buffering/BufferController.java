@@ -1,11 +1,7 @@
 package com.songbase.fm.androidapp.buffering;
 
 import android.os.AsyncTask;
-import android.text.method.ScrollingMovementMethod;
-import android.widget.TextView;
 
-import com.songbase.fm.androidapp.MainActivity;
-import com.songbase.fm.androidapp.R;
 import com.songbase.fm.androidapp.buffering.online.Convert2mp3netConverter;
 
 
@@ -24,12 +20,20 @@ public class BufferController {
 		
 		this.vid2mp3Converter = new Convert2mp3netConverter();
 	
-		this.bufferTask = new BufferTask();
-
-		this.bufferTask.execute();
+		
 		
 	}
 	
+
+	
+	public void bufferSong(String url){
+		
+		this.bufferTask = new BufferTask();
+
+		this.bufferTask.execute(url);	
+		
+		
+	}
 	
 	
 	
@@ -39,17 +43,15 @@ public class BufferController {
         protected String doInBackground(String... params) {
             
 
-        	String html = BufferController.instance.vid2mp3Converter.bufferSong();
+        	BufferController.instance.vid2mp3Converter.bufferSong(params[0]);
 
+        	return "";
 
-            return html;
         }
 
         @Override
         protected void onPostExecute(String result) { 
-        	TextView t=(TextView) MainActivity.instance.findViewById(R.id.textView1); 
-        	t.setMovementMethod(new ScrollingMovementMethod());
-		    t.setText(result);
+        	
         	
         }
 

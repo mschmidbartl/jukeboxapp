@@ -1,0 +1,84 @@
+package misc;
+
+import java.io.DataOutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+import org.apache.commons.io.IOUtils;
+
+public class HttpController {
+
+	public static HttpController instance = new HttpController();;
+
+	private final String USER_AGENT = "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36";
+
+
+	// HTTP GET request
+	private String sendGet() throws Exception {
+
+		String url = "http://www.google.com/search?q=mkyong";
+
+		URL obj = new URL(url);
+		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+
+		// optional default is GET
+		con.setRequestMethod("GET");
+
+		// add request header
+		con.setRequestProperty("User-Agent", USER_AGENT);
+
+		int responseCode = con.getResponseCode();
+		System.out.println("\nSending 'GET' request to URL : " + url);
+		System.out.println("Response Code : " + responseCode);
+		System.out.println("Response Len : " + con.getContentLength());
+
+		return IOUtils.toString(con.getInputStream(), "UTF-8");
+
+
+	}
+
+	// HTTP POST request
+	public String sendPost(String url, String urlParameters) throws Exception {
+
+		URL obj = new URL(url);
+		HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
+
+		// add reuqest header
+		connection.setRequestMethod("POST");
+		connection.setRequestProperty("User-Agent", USER_AGENT);
+		connection.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+
+		connection.setRequestProperty("Content-Type",
+				"application/x-www-form-urlencoded");
+
+		connection.setRequestProperty("Content-Length",
+				"" + Integer.toString(urlParameters.getBytes().length));
+		connection.setRequestProperty("Connection:keep", "keep-alive");
+		connection.setRequestProperty("Cache-Control", "no-cache");
+
+		connection.setRequestProperty("Pragma", "no-cache");
+		connection.setRequestProperty("Referer", "http://convert2mp3.net/");
+		connection.setRequestProperty("Origin", "http://convert2mp3.net");
+		connection.setRequestProperty("Host", "convert2mp3.net");
+
+		connection.setRequestProperty("Cookie", "WSID=123456789");
+
+		// Send post request
+		connection.setDoOutput(true);
+		DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
+		wr.writeBytes(urlParameters);
+		wr.flush();
+		wr.close();
+
+		int responseCode = connection.getResponseCode();
+
+		System.out.println("\nSending 'POST' request to URL : " + url);
+		System.out.println("Post parameters : " + urlParameters);
+		System.out.println("Response Code : " + responseCode);
+
+		return IOUtils.toString(connection.getInputStream(), "UTF-8");
+
+
+	}
+
+}

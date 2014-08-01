@@ -1,0 +1,43 @@
+package com.songbase.fm.androidapp.list;
+
+import java.util.List;
+
+import com.songbase.fm.androidapp.R;
+import com.songbase.fm.androidapp.media.Planet;
+
+import android.content.Context;
+import android.view.View;
+import android.widget.ArrayAdapter;
+
+
+public class SonglistAdapter extends ArrayAdapter<Planet> {
+
+private List<Planet> planetList;
+private Context context;
+ 
+public SonglistAdapter(List<Planet> planetList, Context ctx) {
+    super(ctx, R.layout.row_layout, planetList);
+    this.planetList = planetList;
+    this.context = ctx;
+}
+ 
+public View getView(int position, View convertView, ViewGroup parent) {
+     
+    // First let's verify the convertView is not null
+    if (convertView == null) {
+        // This a new view we inflate the new layout
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        convertView = inflater.inflate(R.layout.row_layout, parent, false);
+    }
+        // Now we can fill the layout with the right values
+        TextView tv = (TextView) convertView.findViewById(R.id.name);
+        TextView distView = (TextView) convertView.findViewById(R.id.dist);
+        Planet p = planetList.get(position);
+ 
+        tv.setText(p.getName());
+        distView.setText("" + p.getDistance());
+     
+     
+    return convertView;
+}
+}
