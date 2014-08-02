@@ -13,32 +13,32 @@ import android.widget.SectionIndexer;
 import android.widget.TextView;
 
 import com.songbase.fm.androidapp.R;
-import com.songbase.fm.androidapp.media.Planet;
+import com.songbase.fm.androidapp.media.Song;
 
-public class SonglistAdapter extends ArrayAdapter<Planet> implements SectionIndexer  {
+public class SonglistAdapter extends ArrayAdapter<Song> implements SectionIndexer  {
 
-	private List<Planet> planetList;
+	private List<Song> songlist;
 	private Context context;
 	private static String sections = "abcdefghilmnopqrstuvz";
 
 	
 	
-	public SonglistAdapter(List<Planet> planetList, Context ctx) {
+	public SonglistAdapter(List<Song> planetList, Context ctx) {
 		super(ctx, R.layout.img_row_layout, planetList);
-		this.planetList = planetList;
+		this.songlist = planetList;
 		this.context = ctx;
 	}
 	
 	public int getCount() {
-		return planetList.size();
+		return songlist.size();
 	}
 
-	public Planet getItem(int position) {
-		return planetList.get(position);
+	public Song getItem(int position) {
+		return songlist.get(position);
 	}
 
 	public long getItemId(int position) {
-		return planetList.get(position).hashCode();
+		return songlist.get(position).hashCode();
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
@@ -64,7 +64,7 @@ public class SonglistAdapter extends ArrayAdapter<Planet> implements SectionInde
 		else 
 			holder = (PlanetHolder) v.getTag();
 		
-		Planet p = planetList.get(position);
+		Song p = songlist.get(position);
 		holder.planetNameView.setText(p.getName());
 		holder.distView.setText("" + p.getDistance());
 		

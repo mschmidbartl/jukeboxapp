@@ -1,6 +1,5 @@
 package com.songbase.fm.androidapp.list;
 
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -20,46 +19,61 @@ public class FastSearchListView extends ListView {
 	private static int indWidth = 30;
 	private String[] sections;
 	private float scaledWidth;
-	private float sx;
+	private float fastSearchPosition;
+	private float scaledFastSearchPaddingRight;
+	private float fastSearchPaddingRight = 0;
+
 	private int indexSize;
 	private String section;
 	private boolean showLetter = true;
 	private Handler listHandler;
-	
+
 	public FastSearchListView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		ctx = context;
-		
+
 	}
 
 	public FastSearchListView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		ctx = context;
-		
+
 	}
 
 	public FastSearchListView(Context context, String keyList) {
 		super(context);
 		ctx = context;
-		
-	}
 
+	}
 
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
 
+		// For grafical Laylout
+		if (sections == null) {
+			sections = new String[1];
+			sections[0] = "#";
+		}
+
+		scaledFastSearchPaddingRight = fastSearchPaddingRight
+				* getSizeInPixel(ctx);
 		scaledWidth = indWidth * getSizeInPixel(ctx);
-		sx = this.getWidth() - this.getPaddingRight() - scaledWidth-10*getSizeInPixel(ctx);
+		fastSearchPosition = this.getWidth() - this.getPaddingRight()
+				- scaledWidth - scaledFastSearchPaddingRight;
 
 		Paint p = new Paint();
 		p.setColor(Color.BLACK);
 		p.setAlpha(255);
 
-		canvas.drawRect(sx, this.getPaddingTop(), sx + scaledWidth,
+		canvas.drawRect(fastSearchPosition, this.getPaddingTop(),
+				fastSearchPosition + scaledWidth,
 				this.getHeight() - this.getPaddingBottom(), p);
-		
-		indexSize = (this.getHeight()-20* (int)getSizeInPixel(ctx)) //- this.getPaddingTop() - getPaddingBottom()
+
+		indexSize = (this.getHeight() - 20 * (int) getSizeInPixel(ctx)) // -
+																		// this.getPaddingTop()
+																		// -
+																		// getPaddingBottom()
 				/ sections.length;
 
 		Paint textPaint = new Paint();
@@ -67,18 +81,19 @@ public class FastSearchListView extends ListView {
 		textPaint.setTextSize(scaledWidth / 2);
 
 		for (int i = 0; i < sections.length; i++)
-			canvas.drawText(sections[i].toUpperCase(),
-					sx + textPaint.getTextSize() / 2, indexSize * (i + 1), textPaint);// getPaddingTop() +
-		
-		
+			canvas.drawText(sections[i].toUpperCase(), fastSearchPosition
+					+ textPaint.getTextSize() / 2, indexSize * (i + 1),
+					textPaint);// getPaddingTop() +
+
 		// We draw the letter in the middle
 		if (showLetter & section != null && !section.equals("")) {
-			
-			Paint textPaint2 = new Paint();			
+
+			Paint textPaint2 = new Paint();
 			textPaint2.setColor(Color.DKGRAY);
-			textPaint2.setTextSize(2 * indWidth);
-			
-			canvas.drawText(section.toUpperCase(), getWidth() / 2,  getHeight() / 2, textPaint2);
+			textPaint2.setTextSize(2 * scaledWidth);
+
+			canvas.drawText(section.toUpperCase(), getWidth() / 2,
+					getHeight() / 2, textPaint2);
 		}
 	}
 
@@ -99,12 +114,13 @@ public class FastSearchListView extends ListView {
 
 		switch (event.getAction()) {
 		case MotionEvent.ACTION_DOWN: {
-			if (x < sx)
+			if (x < fastSearchPosition || x > fastSearchPosition + scaledWidth)
 				return super.onTouchEvent(event);
 			else {
 				// We touched the index bar
 				showLetter = true;
-				float y = event.getY() - this.getPaddingTop() - getPaddingBottom();
+				float y = event.getY() - this.getPaddingTop()
+						- getPaddingBottom();
 				int currentPosition = (int) Math.floor(y / indexSize);
 				section = sections[currentPosition];
 				this.setSelection(((SectionIndexer) getAdapter())
@@ -113,12 +129,19 @@ public class FastSearchListView extends ListView {
 			break;
 		}
 		case MotionEvent.ACTION_MOVE: {
-			if (x < sx)
+			if (x < fastSearchPosition || x > fastSearchPosition + scaledWidth)
 				return super.onTouchEvent(event);
 			else {
-				
+
 				float y = event.getY();
 				int currentPosition = (int) Math.floor(y / indexSize);
+				
+				if(currentPosition>section.length()-1)
+					currentPosition =section.length()-1;  
+				if(currentPosition<0)
+					currentPosition =0;  
+				
+				
 				section = sections[currentPosition];
 				this.setSelection(((SectionIndexer) getAdapter())
 						.getPositionForSection(currentPosition));
@@ -129,25 +152,23 @@ public class FastSearchListView extends ListView {
 		}
 		case MotionEvent.ACTION_UP: {
 			listHandler = new ListHandler();
-		  	listHandler.sendEmptyMessageDelayed(0, 150);
-			
-		     return super.onTouchEvent(event);
-			
+			listHandler.sendEmptyMessageDelayed(0, 150);
+
+			return super.onTouchEvent(event);
+
 		}
-	  }
+		}
 		return true;
 	}
 
-	
 	private class ListHandler extends Handler {
 
 		@Override
-		public void handleMessage(Message msg) {			
-			super.handleMessage(msg);			
+		public void handleMessage(Message msg) {
+			super.handleMessage(msg);
 			showLetter = false;
 			FastSearchListView.this.invalidate();
 		}
-		
-		
+
 	}
 }

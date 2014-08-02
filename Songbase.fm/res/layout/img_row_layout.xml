@@ -6,33 +6,31 @@
     <ImageView
         android:id="@+id/img"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:src="@drawable/playlist" />
 
-    <TextView
+       <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/img"
-        android:layout_toRightOf="@+id/img"
+        android:layout_alignLeft="@+id/dist"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="15dip"
         android:textStyle="bold" />
-
     <TextView
         android:id="@+id/dist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/name"
         android:layout_gravity="center"
-        android:layout_marginTop="2dip"
+        android:layout_marginLeft="10dip"
+        android:layout_marginTop="4dip"
         android:layout_toRightOf="@id/img"
         android:gravity="right"
         android:textSize="8dp"
         android:textStyle="italic" />
-         <TextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            />
+
+ 
+
 </RelativeLayout>

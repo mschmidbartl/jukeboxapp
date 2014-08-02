@@ -2,3 +2,11 @@
 1406921597233	Rename package 'com.songbase.fm.androidapp.song'
 1406921775680	Rename type 'PlanetAdapter'
 1406924161354	Delete element
+1406924989703	Rename field 'sx'
+1406925228367	Rename field 'paddingRight'
+1406927176886	Rename field 'fastSearchPaddingRight'
+1406927196599	Rename field 'fastSearchWidth'
+1406972528576	Rename type 'Planet'
+1406972535410	Rename type 'SOng'
+1406972589915	Rename field 'planetsList'
+1406972626404	Rename field 'planetList'
