@@ -10,3 +10,15 @@
 1406972535410	Rename type 'SOng'
 1406972589915	Rename field 'planetsList'
 1406972626404	Rename field 'planetList'
+1406989356923	Copy file
+1406991253992	Rename resource 'blackback.xml'
+1406991282458	Copy file
+1406995723415	Rename field 'mouseDownX'
+1407062864298	Rename type 'uiController'
+1407062988618	Rename field 'context'
+1407063218120	Rename type 'SonglistAdapter'
+1407063230811	Rename local variable 'planetList'
+1407063238708	Rename field 'songlist'
+1407063468352	Rename field 'aAdpt'
+1407063475530	Rename field 'songlist'
+1407063709886	Rename method 'onContextMenu'

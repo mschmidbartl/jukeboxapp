@@ -1,0 +1,31 @@
+package com.songbase.fm.androidapp.ui;
+
+import android.app.ActionBar;
+import android.app.Activity;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
+
+public class UIController {
+
+	
+	private Activity activity;
+	
+	public void init(Activity activity){
+		
+		this.activity = activity;
+		
+		//Black title bar
+				if (Build.VERSION.SDK_INT >= 11) {
+					ActionBar bar = activity.getActionBar();
+					// for color
+					bar.setBackgroundDrawable(new ColorDrawable(Color
+							.parseColor("#111111")));
+				}
+		
+		
+	}
+	
+	
+	
+}

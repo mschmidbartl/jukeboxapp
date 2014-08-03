@@ -1,0 +1,98 @@
+package com.songbase.fm.androidapp;
+
+import android.app.Activity;
+import android.app.Dialog;
+import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView.AdapterContextMenuInfo;
+import android.widget.Button;
+import android.widget.EditText;
+
+import com.songbase.fm.androidapp.buffering.BufferController;
+import com.songbase.fm.androidapp.list.ListController;
+import com.songbase.fm.androidapp.media.Song;
+import com.songbase.fm.androidapp.ui.UIController;
+
+public class MainActivity extends Activity {
+
+	public static MainActivity instance;
+	private UIController uiController;
+	private ListController listController;
+	private BufferController bufferController;
+
+	
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		instance = this;
+
+		uiController = new UIController();
+		uiController.init(this);
+
+		bufferController = new BufferController();
+		// bufferController.bufferSong( url);
+
+		// Intent browserIntent = new Intent(Intent.ACTION_VIEW,
+		// Uri.parse("http://www.songbase.fm"));
+		// /startActivity(browserIntent);
+
+		// List-----------------
+		listController.init(this);
+
+		
+	}
+
+	// We want to create a context Menu when the user long click on an item
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo) {
+
+		super.onCreateContextMenu(menu, v, menuInfo);
+		AdapterContextMenuInfo aInfo = (AdapterContextMenuInfo) menuInfo;
+
+		listController.onContextMenu(aInfo);
+		
+	
+
+	}
+
+	// This method is called when user selects an Item in the Context menu
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		int itemId = item.getItemId();
+		AdapterContextMenuInfo aInfo = (AdapterContextMenuInfo) item
+				.getMenuInfo();
+		songlist.remove(aInfo.position);
+		aAdpt.notifyDataSetChanged();
+		return true;
+	}
+
+	// Handle user click
+	public void addPlanet(View view) {
+		final Dialog d = new Dialog(this);
+		d.setContentView(R.layout.dialog);
+		d.setTitle("Add planet");
+		d.setCancelable(true);
+
+		final EditText edit = (EditText) d.findViewById(R.id.editTextPlanet);
+		Button b = (Button) d.findViewById(R.id.button1);
+		b.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+				String planetName = edit.getText().toString();
+				MainActivity.this.songlist.add(new Song(planetName, 0));
+				MainActivity.this.aAdpt.notifyDataSetChanged(); // We notify the
+																// data model is
+																// changed
+				d.dismiss();
+			}
+		});
+
+		d.show();
+	}
+
+	
+
+}

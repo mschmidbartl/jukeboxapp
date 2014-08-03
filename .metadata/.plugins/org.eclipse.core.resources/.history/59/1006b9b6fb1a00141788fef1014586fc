@@ -1,0 +1,18 @@
+package com.songbase.fm.androidapp.ui;
+
+public class UIController {
+
+	
+	
+	public void init(){
+		
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+}

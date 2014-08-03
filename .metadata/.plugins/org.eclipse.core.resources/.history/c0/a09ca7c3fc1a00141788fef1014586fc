@@ -1,0 +1,77 @@
+package com.songbase.fm.androidapp.list;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.songbase.fm.androidapp.media.Song;
+
+public class ListController {
+	
+	List<Song> songlist = new ArrayList<Song>();
+	ListAdapter aAdpt;
+
+	
+	
+	
+	
+	//TODO remove
+	public void initList() {
+		// We populate the planets
+
+		songlist.add(new Song("Mercury", 10));
+		songlist.add(new Song("Venus", 20));
+		songlist.add(new Song("Mars", 30));
+		songlist.add(new Song("Jupiter", 40));
+		songlist.add(new Song("Saturn", 50));
+		songlist.add(new Song("Uranus", 60));
+		songlist.add(new Song("Neptune", 70));
+		songlist.add(new Song("Mercury", 10));
+		songlist.add(new Song("Venus", 20));
+		songlist.add(new Song("Mars", 30));
+		songlist.add(new Song("Jupiter", 40));
+		songlist.add(new Song("Saturn", 50));
+		songlist.add(new Song("Uranus", 60));
+		songlist.add(new Song("Neptune", 70));
+		songlist.add(new Song("Mercury", 10));
+		songlist.add(new Song("Venus", 20));
+		songlist.add(new Song("Mars", 30));
+		songlist.add(new Song("Jupiter", 40));
+		songlist.add(new Song("Saturn", 50));
+		songlist.add(new Song("Uranus", 60));
+		songlist.add(new Song("Neptune", 70));
+		songlist.add(new Song("Mercury", 10));
+		songlist.add(new Song("Venus", 20));
+		songlist.add(new Song("Mars", 30));
+		songlist.add(new Song("Jupiter", 40));
+		songlist.add(new Song("Saturn", 50));
+		songlist.add(new Song("Uranus", 60));
+		songlist.add(new Song("Neptune", 70));
+		songlist.add(new Song("Mercury", 10));
+		songlist.add(new Song("Venus", 20));
+		songlist.add(new Song("Mars", 30));
+		songlist.add(new Song("Jupiter", 40));
+		songlist.add(new Song("Saturn", 50));
+		songlist.add(new Song("Uranus", 60));
+		songlist.add(new Song("Neptune", 70));
+		songlist.add(new Song("Mercury", 10));
+		songlist.add(new Song("Venus", 20));
+		songlist.add(new Song("Mars", 30));
+		songlist.add(new Song("Jupiter", 40));
+		songlist.add(new Song("Saturn", 50));
+		songlist.add(new Song("Uranus", 60));
+		songlist.add(new Song("Neptune", 70));
+		songlist.add(new Song("Mercury", 10));
+		songlist.add(new Song("Venus", 20));
+		songlist.add(new Song("Mars", 30));
+		songlist.add(new Song("Jupiter", 40));
+		songlist.add(new Song("Saturn", 50));
+		songlist.add(new Song("Uranus", 60));
+		songlist.add(new Song("Neptune", 70));
+
+	}
+	
+	
+	
+	
+
+}

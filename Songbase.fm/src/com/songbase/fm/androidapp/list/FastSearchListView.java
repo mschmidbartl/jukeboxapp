@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SectionIndexer;
@@ -22,11 +23,16 @@ public class FastSearchListView extends ListView {
 	private float fastSearchPosition;
 	private float scaledFastSearchPaddingRight;
 	private float fastSearchPaddingRight = 0;
+	private boolean touchingFastSearch;
 
 	private int indexSize;
 	private String section;
 	private boolean showLetter = true;
 	private Handler listHandler;
+
+	private float mouseDownY = 0;
+
+	private View controlView;
 
 	public FastSearchListView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
@@ -37,13 +43,11 @@ public class FastSearchListView extends ListView {
 	public FastSearchListView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		ctx = context;
-
 	}
 
 	public FastSearchListView(Context context, String keyList) {
 		super(context);
 		ctx = context;
-
 	}
 
 	@Override
@@ -70,7 +74,7 @@ public class FastSearchListView extends ListView {
 				fastSearchPosition + scaledWidth,
 				this.getHeight() - this.getPaddingBottom(), p);
 
-		indexSize = (this.getHeight() - 20 * (int) getSizeInPixel(ctx)) // -
+		indexSize = (this.getHeight() - 10 * (int) getSizeInPixel(ctx)) // -
 																		// this.getPaddingTop()
 																		// -
 																		// getPaddingBottom()
@@ -92,8 +96,10 @@ public class FastSearchListView extends ListView {
 			textPaint2.setColor(Color.DKGRAY);
 			textPaint2.setTextSize(2 * scaledWidth);
 
-			canvas.drawText(section.toUpperCase(), getWidth() / 2,
-					getHeight() / 2, textPaint2);
+			canvas.drawText(section.toUpperCase(), getWidth() - 3.5f
+					* scaledWidth, mouseDownY + scaledWidth / 2, textPaint2);// getHeight()
+																				// /
+																				// 2
 		}
 	}
 
@@ -111,17 +117,25 @@ public class FastSearchListView extends ListView {
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		float x = event.getX();
+		float y = event.getY() - this.getPaddingTop() - getPaddingBottom();
+		mouseDownY = y;
 
 		switch (event.getAction()) {
 		case MotionEvent.ACTION_DOWN: {
+
 			if (x < fastSearchPosition || x > fastSearchPosition + scaledWidth)
+
 				return super.onTouchEvent(event);
 			else {
+				touchingFastSearch = true;
 				// We touched the index bar
 				showLetter = true;
-				float y = event.getY() - this.getPaddingTop()
-						- getPaddingBottom();
+
 				int currentPosition = (int) Math.floor(y / indexSize);
+				if (currentPosition > sections.length - 1)
+					currentPosition = sections.length - 1;
+				if (currentPosition < 0)
+					currentPosition = 0;
 				section = sections[currentPosition];
 				this.setSelection(((SectionIndexer) getAdapter())
 						.getPositionForSection(currentPosition));
@@ -129,19 +143,26 @@ public class FastSearchListView extends ListView {
 			break;
 		}
 		case MotionEvent.ACTION_MOVE: {
-			if (x < fastSearchPosition || x > fastSearchPosition + scaledWidth)
-				return super.onTouchEvent(event);
-			else {
 
-				float y = event.getY();
+			if (x < fastSearchPosition || x > fastSearchPosition + scaledWidth) {
+				if (touchingFastSearch) {
+					touchingFastSearch = false;
+					listHandler = new ListHandler();
+					listHandler.sendEmptyMessageDelayed(0, 150);
+				}
+
+				return super.onTouchEvent(event);
+
+			} else {
+
+				y = event.getY();
 				int currentPosition = (int) Math.floor(y / indexSize);
-				
-				if(currentPosition>section.length()-1)
-					currentPosition =section.length()-1;  
-				if(currentPosition<0)
-					currentPosition =0;  
-				
-				
+
+				if (currentPosition > sections.length - 1)
+					currentPosition = sections.length - 1;
+				if (currentPosition < 0)
+					currentPosition = 0;
+
 				section = sections[currentPosition];
 				this.setSelection(((SectionIndexer) getAdapter())
 						.getPositionForSection(currentPosition));
@@ -151,6 +172,8 @@ public class FastSearchListView extends ListView {
 
 		}
 		case MotionEvent.ACTION_UP: {
+
+			touchingFastSearch = false;
 			listHandler = new ListHandler();
 			listHandler.sendEmptyMessageDelayed(0, 150);
 
