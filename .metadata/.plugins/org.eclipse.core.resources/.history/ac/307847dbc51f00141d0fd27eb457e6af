@@ -1,0 +1,68 @@
+package com.songbase.fm.androidapp.media;
+
+import com.songbase.fm.androidapp.list.ListAdapter;
+import com.songbase.fm.androidapp.list.MainListElement;
+
+
+
+public class Song implements MainListElement{
+
+	private String name;
+	private Integer distance;
+	private String descr;
+	private int idImg;
+
+
+	public ListAdapter.ListLayout getListLayout(){
+		return ListAdapter.ListLayout.NAME;
+	}
+
+	public Song(String name, Integer distance) {
+		this.name = name;
+		this.distance = distance;
+	}
+
+	public Song(String name, String descr) {
+		this.name = name;
+		this.descr = descr;
+	}
+
+	public Song(String name, Integer distance, String descr, int idImg) {
+		this.name = name;
+		this.distance = distance;
+		this.descr = descr;
+		this.idImg = idImg;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+	
+	/**
+	 * Get Info to Songs displayed in List
+	 */
+	public String getInfo() {
+		return "Artist";
+	}
+	
+	
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	public Integer getDistance() {
+		return distance;
+	}
+	public void setDistance(Integer distance) {
+		this.distance = distance;
+	}
+	public int getIdImg() {
+		return idImg;
+	}
+	public void setIdImg(int idImg) {
+		this.idImg = idImg;
+	}
+
+
+}

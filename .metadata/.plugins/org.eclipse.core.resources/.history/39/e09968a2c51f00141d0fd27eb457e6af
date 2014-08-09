@@ -1,0 +1,16 @@
+package com.songbase.fm.androidapp.list;
+
+public interface MainListElement {
+	
+	
+	
+	
+	
+	public String getName();
+	
+	public String getInfo();
+	
+	public ListAdapter.ListLayout getListLayout();
+
+
+}

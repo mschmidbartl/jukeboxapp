@@ -26,8 +26,14 @@
 <fullyQualifiedTypeName name="android.widget.ArrayAdapter"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="android.content.Context"/>
-<fullyQualifiedTypeName name="android.view.View"/>
 <fullyQualifiedTypeName name="com.songbase.fm.androidapp.media.Planet"/>
 <fullyQualifiedTypeName name="com.songbase.fm.androidapp.R"/>
 <fullyQualifiedTypeName name="android.util.Log"/>
+<fullyQualifiedTypeName name="android.widget.ProgressBar"/>
+<fullyQualifiedTypeName name="android.view.View"/>
+<fullyQualifiedTypeName name="android.graphics.Color"/>
+<fullyQualifiedTypeName name="android.widget.TextView"/>
+<fullyQualifiedTypeName name="android.view.ViewParent"/>
+<fullyQualifiedTypeName name="android.app.ActionBar"/>
+<fullyQualifiedTypeName name="android.graphics.drawable.ColorDrawable"/>
 </qualifiedTypeNameHistroy>

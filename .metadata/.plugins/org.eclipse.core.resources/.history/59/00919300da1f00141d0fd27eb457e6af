@@ -1,0 +1,54 @@
+package com.songbase.fm.androidapp.list;
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
+import com.songbase.fm.androidapp.MainActivity;
+
+public class OptionListElement implements MainListElement {
+
+	
+	private String name;
+
+	private Bitmap icon;
+
+
+	public ListAdapter.ListLayout getListLayout(){
+		return ListAdapter.ListLayout.NAME;
+	}
+
+	public OptionListElement(String name) {
+		this.name = name;
+		
+		int imageResource = MainActivity.instance.getResources().getIdentifier("playlist", "drawable", MainActivity.instance.getPackageName());
+		this.icon = BitmapFactory.decodeResource(MainActivity.instance.getResources(), imageResource);
+	}
+	
+	
+	public Bitmap getIcon() {
+		
+		return this.icon;
+	}
+	
+
+	public String getName() {
+		return name;
+	}
+	
+
+	public String getInfo() {
+		return "";
+	}
+
+	@Override
+	public void executeAction() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
+	
+
+
+}

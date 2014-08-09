@@ -1,0 +1,71 @@
+package com.songbase.fm.androidapp.media;
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
+import com.songbase.fm.androidapp.MainActivity;
+import com.songbase.fm.androidapp.list.ListAdapter;
+import com.songbase.fm.androidapp.list.MainListElement;
+
+
+
+public class Song implements MainListElement{
+
+	private String name;
+	private Integer distance;
+	private String descr;
+	private Bitmap icon;
+
+
+	public ListAdapter.ListLayout getListLayout(){
+		return ListAdapter.ListLayout.NAME;
+	}
+
+	public Song(String name) {
+		this.name = name;
+		
+		int imageResource = MainActivity.instance.getResources().getIdentifier("playlist", "drawable", MainActivity.instance.getPackageName());
+		this.icon = BitmapFactory.decodeResource(MainActivity.instance.getResources(), imageResource);
+		this.distance = distance;
+	}
+
+
+
+	
+	public Bitmap getIcon() {
+		
+		return icon;
+	}
+	
+
+	public String getName() {
+		return name;
+	}
+	
+	/**
+	 * Get Info to Songs displayed in List
+	 */
+	public String getInfo() {
+		return "Artist";
+	}
+	
+	
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	public Integer getDistance() {
+		return distance;
+	}
+	public void setDistance(Integer distance) {
+		this.distance = distance;
+	}
+	public int getIdImg() {
+		return idImg;
+	}
+	public void setIdImg(int idImg) {
+		this.idImg = idImg;
+	}
+
+
+}

@@ -1,0 +1,33 @@
+package com.songbase.fm.androidapp.list;
+
+import android.graphics.Bitmap;
+
+public abstract class MainListElement {
+	
+	
+	
+	public void executeAction(){
+		
+	}
+	
+	public String getName(){
+		return null;
+
+	}
+	
+	public String getInfo(){
+		return null;
+	
+	}
+	
+	public Bitmap getIcon(){
+		return null;
+	}
+
+	
+	public ListAdapter.ListLayout getListLayout(){
+		
+	}
+
+
+}

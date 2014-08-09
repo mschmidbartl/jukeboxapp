@@ -1,52 +1,57 @@
 package com.songbase.fm.androidapp.media;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
+import com.songbase.fm.androidapp.MainActivity;
+import com.songbase.fm.androidapp.list.ListAdapter;
+import com.songbase.fm.androidapp.list.MainListElement;
 
 
-public class Song {
+
+public class Song extends MainListElement{
 
 	private String name;
-	private Integer distance;
-	private String descr;
-	private int idImg;
+
+	private Bitmap icon;
 
 
-
-	public Song(String name, Integer distance) {
-		this.name = name;
-		this.distance = distance;
+	public ListAdapter.ListLayout getListLayout(){
+		return ListAdapter.ListLayout.NAMEINFO;
 	}
 
-	public Song(String name, String descr) {
+	public Song(String name,Action action) {
+		
 		this.name = name;
-		this.descr = descr;
+		this.action = action;
+
+		int imageResource = MainActivity.instance.getResources().getIdentifier("playlist", "drawable", MainActivity.instance.getPackageName());
+		this.icon = BitmapFactory.decodeResource(MainActivity.instance.getResources(), imageResource);
 	}
 
-	public Song(String name, Integer distance, String descr, int idImg) {
-		this.name = name;
-		this.distance = distance;
-		this.descr = descr;
-		this.idImg = idImg;
+	
+	public Bitmap getIcon() {
+		
+		return this.icon;
 	}
-
+	
 
 	public String getName() {
 		return name;
 	}
+	
+	/**
+	 * Get Info to Songs displayed in List
+	 */
+	public String getInfo() {
+		return "TODO Artist";
+	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Integer getDistance() {
-		return distance;
-	}
-	public void setDistance(Integer distance) {
-		this.distance = distance;
-	}
-	public int getIdImg() {
-		return idImg;
-	}
-	public void setIdImg(int idImg) {
-		this.idImg = idImg;
-	}
 
+	
 
+	
 }

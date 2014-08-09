@@ -9,7 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/strut"
-        android:scrollbars="none" />
+        android:scrollbars="none" 
+        android:background="@drawable/listselector"  />
 
     <View
         android:id="@+id/strut"
@@ -18,7 +19,7 @@
         android:layout_above="@+id/controls"
         android:layout_centerHorizontal="true"
        android:background="@drawable/navigationarrow"
- />
+     />
 
     <Button
         android:id="@+id/rootButton"
