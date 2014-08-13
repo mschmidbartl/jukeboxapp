@@ -14,7 +14,6 @@
 <fullyQualifiedTypeName name="java.io.BufferedReader"/>
 <fullyQualifiedTypeName name="java.io.InputStreamReader"/>
 <fullyQualifiedTypeName name="android.R"/>
-<fullyQualifiedTypeName name="com.songbase.fm.androidapp.MainActivity"/>
 <fullyQualifiedTypeName name="android.text.method.ScrollingMovementMethod"/>
 <fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="android.widget.Button"/>
@@ -28,7 +27,6 @@
 <fullyQualifiedTypeName name="android.content.Context"/>
 <fullyQualifiedTypeName name="com.songbase.fm.androidapp.media.Planet"/>
 <fullyQualifiedTypeName name="com.songbase.fm.androidapp.R"/>
-<fullyQualifiedTypeName name="android.util.Log"/>
 <fullyQualifiedTypeName name="android.widget.ProgressBar"/>
 <fullyQualifiedTypeName name="android.view.View"/>
 <fullyQualifiedTypeName name="android.graphics.Color"/>
@@ -36,4 +34,11 @@
 <fullyQualifiedTypeName name="android.view.ViewParent"/>
 <fullyQualifiedTypeName name="android.app.ActionBar"/>
 <fullyQualifiedTypeName name="android.graphics.drawable.ColorDrawable"/>
+<fullyQualifiedTypeName name="com.songbase.fm.androidapp.list.MainListElement"/>
+<fullyQualifiedTypeName name="com.songbase.fm.androidapp.list.ListAdapter.ListLaylout"/>
+<fullyQualifiedTypeName name="com.songbase.fm.androidapp.list.ListController"/>
+<fullyQualifiedTypeName name="android.util.Log"/>
+<fullyQualifiedTypeName name="com.songbase.fm.androidapp.list.OptionListElement"/>
+<fullyQualifiedTypeName name="android.widget.Toast"/>
+<fullyQualifiedTypeName name="com.songbase.fm.androidapp.MainActivity"/>
 </qualifiedTypeNameHistroy>

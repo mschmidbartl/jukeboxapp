@@ -10,7 +10,10 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/strut"
         android:scrollbars="none" 
-        android:background="@drawable/listselector"  />
+        android:background="@drawable/listselector" 
+        android:divider="@color/gray"
+        android:dividerHeight="1px"
+         />
 
     <View
         android:id="@+id/strut"

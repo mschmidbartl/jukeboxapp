@@ -1,6 +1,7 @@
 package com.songbase.fm.androidapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -34,6 +35,12 @@ public class MainActivity extends Activity {
 		// Intent browserIntent = new Intent(Intent.ACTION_VIEW,
 		// Uri.parse("http://www.songbase.fm"));
 		// /startActivity(browserIntent);
+		
+		
+		 Intent intent = new Intent(this, LoginActivity.class);
+		 startActivity(intent);
+		
+		
 
 	}
 

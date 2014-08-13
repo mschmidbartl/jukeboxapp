@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 
 import com.songbase.fm.androidapp.R;
@@ -16,7 +17,7 @@ public class UIController {
 	private Activity activity;
 	//Prograss bar for song
 	private ProgressBar songProgressBar;
-	
+	private ListView listView;
 	
 	@SuppressLint("NewApi")
 	public void init(Activity activity) {
@@ -32,6 +33,14 @@ public class UIController {
 			bar.setBackgroundDrawable(new ColorDrawable(Color
 					.parseColor("#111111")));
 		}
+		
+		
+		listView = (ListView) this.activity.findViewById(R.id.listView);
+		
+		listView.setBackgroundColor(Color.WHITE);
+		
+		
+		
 		
 		
 		songProgressBar = (ProgressBar) activity.findViewById(R.id.progressBarSong);

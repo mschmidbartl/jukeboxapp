@@ -1,5 +1,0 @@
-package com.songbase.fm.androidapp.buffering;
-
-public interface vid2mp3Converter {
-
-}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 2 elements to &apos;libs&apos;&#x0D;&#x0A;- Original project: &apos;google-play-services_lib&apos;&#x0D;&#x0A;- Destination element: &apos;libs&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     google-play-services.jar&#x0D;&#x0A;     google-play-services.jar.properties" description="Copy files" element1="libs/google-play-services.jar" element2="libs/google-play-services.jar.properties" files="2" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1407940817997" target="/Songbase.fm/libs" units="0" version="1.0"/>
+</session>

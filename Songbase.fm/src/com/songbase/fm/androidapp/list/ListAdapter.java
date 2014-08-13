@@ -4,6 +4,7 @@ package com.songbase.fm.androidapp.list;
 import java.util.List;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,6 +70,8 @@ public class ListAdapter extends ArrayAdapter<MainListElement> implements Sectio
 				v = inflater.inflate(R.layout.nameinforowlayout, null);
 							
 				TextView infoView = (TextView) v.findViewById(R.id.infolist);
+				   /*YOUR CHOICE OF COLOR*/
+				infoView.setTextColor(Color.BLACK);
 				
 				holder.infoView = infoView;
 				
@@ -82,7 +85,8 @@ public class ListAdapter extends ArrayAdapter<MainListElement> implements Sectio
 
 			TextView nameView = (TextView) v.findViewById(R.id.namelist);
 			holder.nameView = nameView;
-			
+			nameView.setTextColor(Color.BLACK);
+
 			
 			v.setTag(holder);
 		}
